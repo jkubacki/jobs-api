@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_11_160530) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_11_162612) do
   create_table "applications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "job_id", null: false
     t.datetime "applied_at", null: false
@@ -45,5 +45,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_160530) do
     t.check_constraint "`preference` between 1 and 100", name: "jobs_preference_range"
   end
 
+  create_table "replies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "application_id", null: false
+    t.datetime "received_at", null: false
+    t.text "body", null: false
+    t.integer "preference", limit: 1, null: false, unsigned: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_id"], name: "index_replies_on_application_id"
+    t.check_constraint "`preference` between 1 and 100", name: "replies_preference_range"
+  end
+
   add_foreign_key "applications", "jobs"
+  add_foreign_key "replies", "applications"
 end

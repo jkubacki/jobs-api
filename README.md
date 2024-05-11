@@ -30,7 +30,7 @@ Application
   cv: boolean
   cover_letter: text
   attachments: Attachment[]
-  responses: Response[]
+  replies: Reply[]
   interviews: Interview[]
   tasks: Task[]
   offers: Offer[]
@@ -41,9 +41,9 @@ Attachment
   application: belongs_to
   name: string
 
-Response:
+Reply:
   application: belongs_to
-  received_at: text
+  received_at: datetime
   body: text
   preference: percentage
 
