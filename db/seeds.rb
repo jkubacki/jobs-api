@@ -145,3 +145,22 @@ Reply.create!(
 )
 
 final_offer.update!(accepted: true)
+
+# Another job
+
+Job.create!(
+  company: "Netflix",
+  url: "https://jobs.netflix.com/",
+  title: "Principal Software Developer",
+  description: "Make Netflix promote better content",
+  product: "Recommendation Engine",
+  based_in: "Los Gatos, CA",
+  timezones: "PST. American hours.",
+  stack: "typescript, nodejs, react",
+  compensation: "200k base",
+  pto: "No PTO",
+  glassdoor_url: "https://www.glassdoor.com/Overview/Working-at-Netflix-EI_IE11891.11,18.htm",
+  glassdoor_rating: 41,
+  remote: false,
+  preference: 60
+)
