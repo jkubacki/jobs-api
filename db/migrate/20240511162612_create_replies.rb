@@ -2,7 +2,7 @@ class CreateReplies < ActiveRecord::Migration[7.1]
   def change # rubocop:disable Metrics/MethodLength
     create_table :replies do |t|
       t.belongs_to :application, null: false, foreign_key: true
-      t.datetime :received_at, null: false
+      t.datetime :sent_at, null: false
       t.boolean :by_me, null: false, default: false
       t.text :body, null: false
       t.text :notes
