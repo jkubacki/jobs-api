@@ -23,7 +23,7 @@ class CreateJobs < ActiveRecord::Migration[7.1]
       dir.up do
         execute <<-SQL.squish
           ALTER TABLE jobs
-          ADD CONSTRAINT preference_range
+          ADD CONSTRAINT jobs_preference_range
           CHECK (preference BETWEEN 1 AND 100)
         SQL
       end
@@ -33,7 +33,7 @@ class CreateJobs < ActiveRecord::Migration[7.1]
       dir.up do
         execute <<-SQL.squish
           ALTER TABLE jobs
-          ADD CONSTRAINT glassdoor_rating_range
+          ADD CONSTRAINT jobs_glassdoor_rating_range
           CHECK (glassdoor_rating BETWEEN 1 AND 50)
         SQL
       end
