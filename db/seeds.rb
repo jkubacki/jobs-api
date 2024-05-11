@@ -1,14 +1,5 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# Google job application seed data. True story.
 
-# Create job
 job = Job.create!(
   company: "Google",
   url: "https://careers.google.com",
@@ -61,7 +52,7 @@ Reply.create!(
 interview_reply = Reply.create!(
   application:,
   sent_at: 47.hours.ago,
-  body: "Are you available tomorrow at 10am? We'd like you to leetcode some problems that have nothing to do with the work. Let's talk on google meet.",
+  body: "Are you available tomorrow at 10am? We'd like you to leetcode some problems that have nothing to do with the work. Let's talk on google meet.", # rubocop:disable Layout/LineLength
   notes: "Ok, i guess.",
   preference: 20
 )
@@ -87,7 +78,7 @@ interview.update!(
 Reply.create!(
   application:,
   sent_at: 18.hours.ago,
-  body: "You were right on the call. Traversing binary tree is not that important. You'll an email to do a small task.",
+  body: "You were right on the call. Traversing binary tree is not that important. You'll get an email to do a small task.",
   preference: 70
 )
 
