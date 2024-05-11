@@ -56,9 +56,10 @@ Interview:
 
 Task:
   application: belongs_to
-  description: text
   deadline: datetime
-  status: string
+  description: text
+  done: boolean
+  notes: text
   preference: percentage
 
 Offer:
