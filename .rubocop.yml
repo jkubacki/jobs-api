@@ -1,0 +1,56 @@
+require:
+  - rubocop-rspec
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - bin/*
+    - config/**/*
+  Include:
+    - "**/Gemfile"
+    - "**/*.rb"
+  NewCops: enable
+  TargetRubyVersion: 3.3.0
+
+# Don't require collapsed empty methods
+Style/EmptyMethod:
+  Enabled: false
+
+# Don't require changing array to symbol
+Style/SymbolArray:
+  Enabled: false
+
+
+# Don't require frozen string comment
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Layout/MultilineMethodArgumentLineBreaks:
+  Enabled: true
+
+RSpec/BeEq:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+RSpec/NamedSubject:
+  Enabled: false
+
+# Don't require documentation comments. We aim for self docummenting code. Add comments where needed.
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/**/*.rb'
