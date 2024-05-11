@@ -2,7 +2,7 @@ class CreateTasks < ActiveRecord::Migration[7.1]
   def change # rubocop:disable Metrics/MethodLength
     create_table :tasks do |t|
       t.belongs_to :application, null: false, foreign_key: true
-      t.datetime :deadline
+      t.datetime :due_at
       t.text :description, null: false
       t.boolean :done, null: false, default: false
       t.text :notes

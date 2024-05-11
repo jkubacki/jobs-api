@@ -88,7 +88,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
 
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "application_id", null: false
-    t.datetime "deadline"
+    t.datetime "due_at"
     t.text "description", null: false
     t.boolean "done", default: false, null: false
     t.text "notes"
