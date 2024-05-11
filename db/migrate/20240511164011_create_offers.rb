@@ -8,7 +8,7 @@ class CreateOffers < ActiveRecord::Migration[7.1]
       t.text :compensation, null: false
       t.text :pto
       t.text :notes, null: false
-      t.integer :preference, null: false, unsigned: true, limit: 1
+      t.integer :preference, null: false, unsigned: true, limit: 1, default: 100
 
       t.timestamps
     end
