@@ -87,15 +87,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
   end
 
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "application_id", null: false
+    t.bigint "reply_id", null: false
     t.datetime "due_at"
-    t.text "description", null: false
     t.boolean "done", default: false, null: false
     t.text "notes"
     t.integer "preference", limit: 1, null: false, unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["application_id"], name: "index_tasks_on_application_id"
+    t.index ["reply_id"], name: "index_tasks_on_reply_id"
     t.check_constraint "`preference` between 1 and 100", name: "tasks_preference_range"
   end
 
@@ -103,5 +102,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
   add_foreign_key "interviews", "applications"
   add_foreign_key "offers", "replies"
   add_foreign_key "replies", "applications"
-  add_foreign_key "tasks", "applications"
+  add_foreign_key "tasks", "replies"
 end

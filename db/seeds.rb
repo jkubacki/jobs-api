@@ -65,7 +65,7 @@ Reply.create!(
   preference: 70
 )
 
-Reply.create!(
+task_reply = Reply.create!(
   application:,
   sent_at: 2.hours.ago,
   body: "Complete this small task. We'd like for you to build a better google for us. You have one day.",
@@ -73,9 +73,8 @@ Reply.create!(
 )
 
 task = Task.create!(
-  application:,
+  reply: task_reply,
   due_at: 1.day.from_now,
-  description: "Build a better google for us. You have one day.",
   notes: "Wow",
   preference: 10
 )
