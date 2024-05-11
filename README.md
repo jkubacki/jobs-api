@@ -34,7 +34,6 @@ Application
   interviews: Interview[]
   tasks: Task[]
   offers: Offer[]
-  status: string
   notes: text
   preference: percentage
 
