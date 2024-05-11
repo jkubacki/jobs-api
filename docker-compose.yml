@@ -1,0 +1,14 @@
+services:
+  mysql:
+    image: mysql:8
+    ports:
+      - '3310:3306'
+    expose:
+      - '3310'
+    volumes:
+      - 'mysql:/var/lib/mysql'
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: 'gifts_development'
+volumes:
+  mysql:
