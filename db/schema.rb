@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.bigint "application_id", null: false
     t.datetime "received_at", null: false
     t.text "body", null: false
+    t.text "notes"
     t.integer "preference", limit: 1, null: false, unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
