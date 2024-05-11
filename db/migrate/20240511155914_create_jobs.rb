@@ -11,6 +11,7 @@ class CreateJobs < ActiveRecord::Migration[7.1]
       t.text :stack, null: false
       t.text :compensation, null: false
       t.text :pto
+      t.boolean :remote, null: false, default: false
       t.string :glassdoor_url
       t.integer :glassdoor_rating, unsigned: true, limit: 1
       t.text :notes

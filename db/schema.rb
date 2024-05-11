@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.text "stack", null: false
     t.text "compensation", null: false
     t.text "pto"
+    t.boolean "remote", default: false, null: false
     t.string "glassdoor_url"
     t.integer "glassdoor_rating", limit: 1, unsigned: true
     t.text "notes"
