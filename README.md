@@ -1,24 +1,76 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Jobs - a simple app to track job applications
 
-Things you may want to cover:
+Ruby on Rails API, Next.js frontend
 
-* Ruby version
+```
+# Schema:
 
-* System dependencies
+Job:
+  company: string
+  url: string
+  title: string
+  description: text
+  product: string
+  based_in: string
+  timezones: string
+  stack: text
+  remote: boolean
+  compensation: text
+  pto: string
+  glassdoor_url: string
+  glassdoor_rating: percentage
+  notes: text
+  preference: percentage
 
-* Configuration
+Application
+  job: belongs_to
+  applied_at: datetime
+  cv: boolean
+  cover_letter: text
+  attachments: Attachment[]
+  responses: Response[]
+  interviews: Interview[]
+  tasks: Task[]
+  offers: Offer[]
+  status: string
+  notes: text
+  preference: percentage
 
-* Database creation
+Attachment
+  application: belongs_to
+  name: string
 
-* Database initialization
+Response:
+  application: belongs_to
+  received_at: text
+  body: text
+  preference: percentage
 
-* How to run the test suite
+Interview:
+  application: belongs_to
+  date: datetime
+  medium: string
+  notes: text
+  preference: percentage
 
-* Services (job queues, cache servers, search engines, etc.)
+Task:
+  application: belongs_to
+  description: text
+  deadline: datetime
+  status: string
+  preference: percentage
 
-* Deployment instructions
+Offer:
+  application: belongs_to
+  sent_at: datetime
+  counter_offer: boolean
+  body: text
+  compensation: text
+  pto: text
+  notes: text
+  preference: percentage
+```
 
-* ...
+
