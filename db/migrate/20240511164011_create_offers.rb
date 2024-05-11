@@ -3,7 +3,7 @@ class CreateOffers < ActiveRecord::Migration[7.1]
     create_table :offers do |t|
       t.belongs_to :application, null: false, foreign_key: true
       t.datetime :sent_at, null: false
-      t.boolean :counter_offer, null: false, default: false
+      t.boolean :by_me, null: false, default: false
       t.text :body, null: false
       t.text :compensation, null: false
       t.text :pto

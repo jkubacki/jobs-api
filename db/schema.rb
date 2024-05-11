@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
   create_table "offers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "application_id", null: false
     t.datetime "sent_at", null: false
-    t.boolean "counter_offer", default: false, null: false
+    t.boolean "by_me", default: false, null: false
     t.text "body", null: false
     t.text "compensation", null: false
     t.text "pto"
@@ -79,6 +79,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.text "body", null: false
     t.text "notes"
     t.integer "preference", limit: 1, null: false, unsigned: true
+    t.boolean "by_me", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_replies_on_application_id"

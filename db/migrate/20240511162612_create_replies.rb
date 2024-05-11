@@ -6,6 +6,7 @@ class CreateReplies < ActiveRecord::Migration[7.1]
       t.text :body, null: false
       t.text :notes
       t.integer :preference, null: false, unsigned: true, limit: 1
+      t.boolean :by_me, null: false, default: false
 
       t.timestamps
     end
