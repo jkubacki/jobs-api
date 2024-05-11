@@ -89,36 +89,34 @@ Reply.create!(
   body: "This is done. I added site:reddit.com to the search query. Now you can find relevant information."
 )
 
-Reply.create!(
+offer_reply = Reply.create!(
   application:,
   sent_at: 30.minutes.ago,
-  body: "We are impressed. We'd like to offer you the job. Please let us know if you have any questions.",
+  body: "We are impressed. We'd like to offer you the job. 200k USD vesting stock options 50k, sign-on bonus 50k.",
   notes: "Duh.",
   preference: 90
 )
 
 Offer.create!(
-  application:,
+  reply: offer_reply,
   sent_at: 30.minutes.ago,
-  body: "We'd like to offer you the job. Please let us know if you have any questions.",
   compensation: "200k USD vesting stock options 50k, sign-on bonus 50k",
   pto: "Unlimited PTO",
   notes: "They are lowballing me. I'll ask for 300k.",
   preference: 85
 )
 
-Reply.create!(
+counter_offer_reply = Reply.create!(
   application:,
   by_me: true,
   sent_at: 29.minutes.ago,
   body: "I'd like to discuss the compensation. I'd like to ask for 300k."
 )
 
-Offer.create!(
-  application:,
+final_offer = Offer.create!(
+  reply: counter_offer_reply,
   by_me: true,
   sent_at: 20.minutes.ago,
-  body: "I'd like to discuss the compensation. I'd like to ask for 300k and european PTO",
   compensation: "300k USD vesting stock options 50k, sign-on bonus 50k",
   pto: "26 days",
   notes: "🤞"
@@ -131,3 +129,5 @@ Reply.create!(
   notes: "Nice. I'm in.",
   preference: 100
 )
+
+final_offer.update!(accepted: true)
