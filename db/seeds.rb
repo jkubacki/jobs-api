@@ -32,7 +32,7 @@ application = Application.create!(
   applied_at: 2.days.ago,
   cv: true,
   cover_letter: "I'm a great fit for this role. I've worked on search engines before.",
-  notes: "I sent it both through the website and to the hiring manager. The process was confusing.",
+  notes: "I've sent it both through the website and to the hiring manager. The process was confusing.",
   preference: 50
 )
 
