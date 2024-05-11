@@ -2,7 +2,6 @@ class CreateOffers < ActiveRecord::Migration[7.1]
   def change # rubocop:disable Metrics/MethodLength
     create_table :offers do |t|
       t.belongs_to :reply, null: false, foreign_key: true
-      t.datetime :sent_at, null: false
       t.boolean :by_me, null: false, default: false
       t.text :compensation, null: false
       t.text :pto

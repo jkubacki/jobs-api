@@ -29,7 +29,7 @@ job = Job.create!(
 
 application = Application.create!(
   job:,
-  applied_at: 1.day.ago,
+  applied_at: 2.days.ago,
   cv: true,
   cover_letter: "I'm a great fit for this role. I've worked on search engines before.",
   notes: "I sent it both through the website and to the hiring manager. The process was confusing.",
@@ -38,7 +38,7 @@ application = Application.create!(
 
 Reply.create!(
   application:,
-  sent_at: 6.hours.ago,
+  sent_at: 50.hours.ago,
   body: "Thank you for your application. We'll get back to you soon.",
   notes: "Automatic reply. Not sure if they'll get back to me.",
   preference: 25
@@ -46,51 +46,77 @@ Reply.create!(
 
 Reply.create!(
   application:,
-  sent_at: 5.hours.ago,
-  body: "We have considered your application. Do you want to work in the office?",
+  sent_at: 49.hours.ago,
+  body: "Do you want to work in the office? We have snacks. Private life is overrated.",
   preference: 75
 )
 
 Reply.create!(
   application:,
   by_me: true,
-  sent_at: 4.hours.ago,
+  sent_at: 48.hours.ago,
   body: "Nah, I'm good. I prefer to work remotely."
+)
+
+interview_reply = Reply.create!(
+  application:,
+  sent_at: 47.hours.ago,
+  body: "Are you available tomorrow at 10am? We'd like you to leetcode some problems that have nothing to do with the work. Let's talk on google meet.",
+  notes: "Ok, i guess.",
+  preference: 20
 )
 
 Reply.create!(
   application:,
-  sent_at: 3.hours.ago,
-  body: "No problem. We'll consider you for the role. You'll an email to do a small task for us soon.",
+  by_me: true,
+  sent_at: 46.hours.ago,
+  body: "Sure, let's meet tomorrow at 10am. I'll be there."
+)
+
+interview = Interview.create!(
+  reply: interview_reply,
+  scheduled_at: 24.hours.ago,
+  medium: "Google Meet"
+)
+
+interview.update!(
+  notes: "I was asked to traverse a binary tree. I don't think that's important for the job.",
+  preference: 10
+)
+
+Reply.create!(
+  application:,
+  sent_at: 18.hours.ago,
+  body: "You were right on the call. Traversing binary tree is not that important. You'll an email to do a small task.",
   preference: 70
 )
 
 task_reply = Reply.create!(
   application:,
-  sent_at: 2.hours.ago,
-  body: "Complete this small task. We'd like for you to build a better google for us. You have one day.",
+  sent_at: 17.hours.ago,
+  body: "Complete this small task. We'd like for you to build a better google for us. You have one hour.",
   preference: 20
 )
 
 task = Task.create!(
   reply: task_reply,
-  due_at: 1.day.from_now,
+  due_at: 16.hours.ago,
   notes: "Wow",
   preference: 10
 )
 
-task.update!(notes: "Just add site:reddit.com to the search query. Done.", done: true)
+task.update!(notes: "Just add site:reddit.com to every search query. Done.", done: true)
 
 Reply.create!(
   application:,
   by_me: true,
-  sent_at: 1.hour.ago,
+  sent_at: 15.hours.ago,
   body: "This is done. I added site:reddit.com to the search query. Now you can find relevant information."
 )
 
 offer_reply = Reply.create!(
   application:,
-  sent_at: 30.minutes.ago,
+  sent_at: 10.hours.ago,
   body: "We are impressed. We'd like to offer you the job. 200k USD vesting stock options 50k, sign-on bonus 50k.",
   notes: "Duh.",
   preference: 90
@@ -98,7 +124,6 @@ offer_reply = Reply.create!(
 
 Offer.create!(
   reply: offer_reply,
-  sent_at: 30.minutes.ago,
   compensation: "200k USD vesting stock options 50k, sign-on bonus 50k",
   pto: "Unlimited PTO",
   notes: "They are lowballing me. I'll ask for 300k.",
@@ -107,15 +132,14 @@ Offer.create!(
 
 counter_offer_reply = Reply.create!(
   application:,
+  sent_at: 9.hours.ago,
   by_me: true,
-  sent_at: 29.minutes.ago,
   body: "I'd like to discuss the compensation. I'd like to ask for 300k."
 )
 
 final_offer = Offer.create!(
   reply: counter_offer_reply,
   by_me: true,
-  sent_at: 20.minutes.ago,
   compensation: "300k USD vesting stock options 50k, sign-on bonus 50k",
   pto: "26 days",
   notes: "🤞"

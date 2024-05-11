@@ -1,11 +1,11 @@
 class CreateInterviews < ActiveRecord::Migration[7.1]
   def change # rubocop:disable Metrics/MethodLength
     create_table :interviews do |t|
-      t.belongs_to :application, null: false, foreign_key: true
-      t.datetime :date, null: false
+      t.belongs_to :reply, null: false, foreign_key: true
+      t.datetime :scheduled_at, null: false
       t.string :medium, null: false
       t.text :notes
-      t.integer :preference, null: false, unsigned: true, limit: 1
+      t.integer :preference, unsigned: true, limit: 1
 
       t.timestamps
     end

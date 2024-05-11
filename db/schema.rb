@@ -25,14 +25,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
   end
 
   create_table "interviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "application_id", null: false
-    t.datetime "date", null: false
+    t.bigint "reply_id", null: false
+    t.datetime "scheduled_at", null: false
     t.string "medium", null: false
     t.text "notes"
-    t.integer "preference", limit: 1, null: false, unsigned: true
+    t.integer "preference", limit: 1, unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["application_id"], name: "index_interviews_on_application_id"
+    t.index ["reply_id"], name: "index_interviews_on_reply_id"
     t.check_constraint "`preference` between 1 and 100", name: "interviews_preference_range"
   end
 
@@ -60,7 +60,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
 
   create_table "offers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "reply_id", null: false
-    t.datetime "sent_at", null: false
     t.boolean "by_me", default: false, null: false
     t.text "compensation", null: false
     t.text "pto"
@@ -99,7 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
   end
 
   add_foreign_key "applications", "jobs"
-  add_foreign_key "interviews", "applications"
+  add_foreign_key "interviews", "replies"
   add_foreign_key "offers", "replies"
   add_foreign_key "replies", "applications"
   add_foreign_key "tasks", "replies"
