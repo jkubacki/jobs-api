@@ -23,11 +23,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_155914) do
     t.text "compensation", null: false
     t.text "pto"
     t.string "glassdoor_url"
-    t.integer "glassdoor_rating"
+    t.integer "glassdoor_rating", limit: 1, unsigned: true
     t.text "notes"
-    t.integer "preference", null: false
+    t.integer "preference", limit: 1, null: false, unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.check_constraint "`glassdoor_rating` between 1 and 50", name: "glassdoor_rating_range"
+    t.check_constraint "`preference` between 1 and 100", name: "preference_range"
   end
 
 end
