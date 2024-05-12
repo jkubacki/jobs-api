@@ -1,5 +1,5 @@
 class Application < ApplicationRecord
-  belongs_to :job
+  belongs_to :listing
   has_many :replies, dependent: :destroy
   has_many :interviews, through: :replies
   has_many :tasks, through: :replies
