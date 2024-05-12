@@ -1,4 +1,4 @@
-class JobBlueprint < ApplicationBlueprint
+class ListingBlueprint < ApplicationBlueprint
   fields(
     :id,
     :company,

@@ -1,6 +1,6 @@
-# Google job application seed data. True story.
+# Google listing application seed data. True story.
 
-job = Job.create!(
+listing = Listing.create!(
   company: "Google",
   url: "https://careers.google.com",
   title: "Staff Software Engineer",
@@ -19,7 +19,7 @@ job = Job.create!(
 )
 
 application = Application.create!(
-  job:,
+  listing:,
   applied_at: 2.days.ago,
   cv: true,
   cover_letter: "I'm a great fit for this role. I've worked on search engines before.",
@@ -108,7 +108,7 @@ Reply.create!(
 offer_reply = Reply.create!(
   application:,
   sent_at: 10.hours.ago,
-  body: "We are impressed. We'd like to offer you the job. 200k USD vesting stock options 50k, sign-on bonus 50k.",
+  body: "We are impressed. We'd like to offer you the listing. 200k USD vesting stock options 50k, sign-on bonus 50k.",
   notes: "Duh.",
   preference: 90
 )
@@ -146,9 +146,8 @@ Reply.create!(
 
 final_offer.update!(accepted: true)
 
-# Another job
-
-Job.create!(
+# Another listing
+Listing.create!(
   company: "Netflix",
   url: "https://jobs.netflix.com/",
   title: "Principal Software Developer",

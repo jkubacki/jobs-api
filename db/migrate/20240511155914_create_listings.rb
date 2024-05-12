@@ -1,6 +1,6 @@
-class CreateJobs < ActiveRecord::Migration[7.1]
+class CreateListings < ActiveRecord::Migration[7.1]
   def change # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
-    create_table :jobs do |t|
+    create_table :listings do |t|
       t.string :company, null: false
       t.string :url, null: false
       t.string :title, null: false
@@ -23,8 +23,8 @@ class CreateJobs < ActiveRecord::Migration[7.1]
     reversible do |dir|
       dir.up do
         execute <<-SQL.squish
-          ALTER TABLE jobs
-          ADD CONSTRAINT jobs_preference_range
+          ALTER TABLE listings
+          ADD CONSTRAINT listings_preference_range
           CHECK (preference BETWEEN 1 AND 100)
         SQL
       end
@@ -33,8 +33,8 @@ class CreateJobs < ActiveRecord::Migration[7.1]
     reversible do |dir|
       dir.up do
         execute <<-SQL.squish
-          ALTER TABLE jobs
-          ADD CONSTRAINT jobs_glassdoor_rating_range
+          ALTER TABLE listings
+          ADD CONSTRAINT listings_glassdoor_rating_range
           CHECK (glassdoor_rating BETWEEN 1 AND 50)
         SQL
       end

@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
   create_table "applications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "job_id", null: false
+    t.bigint "listing_id", null: false
     t.datetime "applied_at", null: false
     t.boolean "cv", default: false, null: false
     t.text "cover_letter"
@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.integer "preference", limit: 1, null: false, unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["job_id"], name: "index_applications_on_job_id"
+    t.index ["listing_id"], name: "index_applications_on_listing_id"
     t.check_constraint "`preference` between 1 and 100", name: "applications_preference_range"
   end
 
@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.check_constraint "`preference` between 1 and 100", name: "interviews_preference_range"
   end
 
-  create_table "jobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "listings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "company", null: false
     t.string "url", null: false
     t.string "title", null: false
@@ -54,8 +54,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.integer "preference", limit: 1, null: false, unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.check_constraint "`glassdoor_rating` between 1 and 50", name: "jobs_glassdoor_rating_range"
-    t.check_constraint "`preference` between 1 and 100", name: "jobs_preference_range"
+    t.check_constraint "`glassdoor_rating` between 1 and 50", name: "listings_glassdoor_rating_range"
+    t.check_constraint "`preference` between 1 and 100", name: "listings_preference_range"
   end
 
   create_table "offers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -97,7 +97,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.check_constraint "`preference` between 1 and 100", name: "tasks_preference_range"
   end
 
-  add_foreign_key "applications", "jobs"
+  add_foreign_key "applications", "listings"
   add_foreign_key "interviews", "replies"
   add_foreign_key "offers", "replies"
   add_foreign_key "replies", "applications"

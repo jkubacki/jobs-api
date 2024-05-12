@@ -1,7 +1,7 @@
 class CreateApplications < ActiveRecord::Migration[7.1]
   def change # rubocop:disable Metrics/MethodLength
     create_table :applications do |t|
-      t.belongs_to :job, null: false, foreign_key: true
+      t.belongs_to :listing, null: false, foreign_key: true
       t.datetime :applied_at, null: false
       t.boolean :cv, null: false, default: false
       t.text :cover_letter
