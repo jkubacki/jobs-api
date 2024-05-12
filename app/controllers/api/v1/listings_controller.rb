@@ -11,7 +11,7 @@ class Api::V1::ListingsController < Api::V1::BaseController
     if listing.save
       render json: ListingBlueprint.render(listing), status: :created
     else
-      render json: { errors: listing.errors.full_messages }, status: :unprocessable_entity
+      render json: { message: listing.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end
   end
 
