@@ -1,8 +1,8 @@
 class Api::V1::ListingsController < Api::V1::BaseController
   def index
-    listings = Listing.all
+    metadata, records = pagy(Listing.all)
 
-    render json: ListingBlueprint.render(listings), status: :ok
+    render json: { listings: ListingBlueprint.render_as_hash(records), metadata: }, status: :ok
   end
 
   def create
