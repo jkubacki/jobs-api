@@ -1,6 +1,13 @@
 class Api::V1::ListingsController < Api::V1::BaseController
   def index
-    metadata, records = pagy(Listing.all)
+    pagy, records = pagy(Listing.all)
+
+    metadata = {
+      total: pagy.count,
+      page: pagy.page,
+      from: pagy.from,
+      to: pagy.to
+    }
 
     render json: { listings: ListingBlueprint.render_as_hash(records), metadata: }, status: :ok
   end
