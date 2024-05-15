@@ -9,7 +9,7 @@ module Listings
         where = {}
         where = where.merge(remote_filter(remote))
 
-        search = Listing.search(query || "*", page: page || 1, per_page: PER_PAGE, where:).execute
+        search = Listing.search(query, page:, per_page: PER_PAGE, where:).execute
         Success(search)
       rescue Elastic::Transport::Transport::Error => e
         Failure(e)
