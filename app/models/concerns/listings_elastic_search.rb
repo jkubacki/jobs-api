@@ -8,6 +8,7 @@ module ListingsElasticSearch
 
     def search_data # rubocop:disable Metrics/MethodLength
       {
+        id:,
         company:,
         url:,
         title:,
