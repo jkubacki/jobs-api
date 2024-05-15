@@ -1,6 +1,6 @@
 class Api::V1::ListingsController < Api::V1::BaseController
   def index
-    pagy, records = pagy(Listing.all)
+    pagy, records = pagy(Listing.order(id: :desc), items: 10, page: params[:page] || 1)
 
     metadata = {
       total: pagy.count,
