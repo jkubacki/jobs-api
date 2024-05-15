@@ -1,15 +1,15 @@
 class Api::V1::ListingsController < Api::V1::BaseController
   def index
-    pagy, records = pagy(Listing.order(id: :desc), items: 10, page: params[:page] || 1)
+    search = Listing.search(params[:query] || "*", page: params[:page] || 1, per_page: 10)
 
     metadata = {
-      total: pagy.count,
-      page: pagy.page,
-      from: pagy.from,
-      to: pagy.to
+      total: search.total_count,
+      page: search.current_page,
+      from: search.offset_value,
+      to: search.offset_value + search.limit_value
     }
 
-    render json: { listings: ListingBlueprint.render_as_hash(records), metadata: }, status: :ok
+    render json: { listings: ListingBlueprint.render_as_hash(search.results), metadata: }, status: :ok
   end
 
   def create
