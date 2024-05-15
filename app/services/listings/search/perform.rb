@@ -1,15 +1,14 @@
 module Listings
   module Search
     class Perform < ApplicationService
-      PER_PAGE = 10
-
-      def call(query:, page:, remote:)
-        query ||= "*"
+      def call(query:, page:, remote:, per_page: 10)
+        query = query.presence || "*"
         page ||= 1
         where = {}
         where = where.merge(remote_filter(remote))
 
-        search = Listing.search(query, page:, per_page: PER_PAGE, where:).execute
+        search = Listing.search(query, page:, per_page:, where:, order: { id: :desc })
+        search.total_count # Eager load to handle errors. #execute prints a warning.
         Success(search)
       rescue Elastic::Transport::Transport::Error => e
         Failure(e)
