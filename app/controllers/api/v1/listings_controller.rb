@@ -1,13 +1,14 @@
 class Api::V1::ListingsController < Api::V1::BaseController
   def index
-    search = Listing.search(params[:query] || "*", page: params[:page] || 1, per_page: 10)
+    result = Listings::Search::Perform.call(query: params[:query], page: params[:page], remote: params[:remote])
 
-    metadata = {
-      total: search.total_count,
-      page: search.current_page,
-      from: search.offset_value,
-      to: search.offset_value + search.limit_value
-    }
+    if result.failure?
+      render json: { message: "Couldn't perform search" }, status: :unprocessable_entity
+      return
+    end
+
+    search = result.value!
+    metadata = Listings::Search::Metadata.call(search:)
 
     render json: { listings: ListingBlueprint.render_as_hash(search.results), metadata: }, status: :ok
   end
