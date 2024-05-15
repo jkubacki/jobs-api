@@ -10,5 +10,17 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_DATABASE: 'gifts_development'
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    ports:
+      - '9200:9200'
+    expose:
+      - '9200'
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
 volumes:
   mysql:
+  elasticsearch:

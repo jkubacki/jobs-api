@@ -42,8 +42,9 @@ gem "dry-monads"
 gem "blueprinter"
 gem "oj"
 
-# Pagination
-gem "pagy"
+# Search
+gem "elasticsearch"
+gem "searchkick"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
