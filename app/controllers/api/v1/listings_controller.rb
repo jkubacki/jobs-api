@@ -23,6 +23,16 @@ class Api::V1::ListingsController < Api::V1::BaseController
     end
   end
 
+  def destroy
+    listing = Listing.find(params[:id])
+
+    if listing.destroy
+      render json: {}, status: :ok
+    else
+      render json: { message: "Couldn't delete a listing" }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def listing_params # rubocop:disable Metrics/MethodLength
