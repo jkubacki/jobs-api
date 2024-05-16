@@ -23,6 +23,16 @@ class Api::V1::ListingsController < Api::V1::BaseController
     end
   end
 
+  def update
+    listing = Listing.find(params[:id])
+
+    if listing.update(listing_params)
+      render json: ListingBlueprint.render(listing), status: :ok
+    else
+      render json: { message: listing.errors.full_messages.join(", ") }, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     listing = Listing.find(params[:id])
 
