@@ -1,4 +1,4 @@
-class ListingBlueprint < ApplicationBlueprint
+class ListingBlueprint < Blueprinter::Base
   fields(
     :id,
     :company,
