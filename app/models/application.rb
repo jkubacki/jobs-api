@@ -1,4 +1,6 @@
 class Application < ApplicationRecord
+  include ApplicationsElasticSearch
+
   belongs_to :listing
   has_many :replies, dependent: :destroy
   has_many :interviews, through: :replies
