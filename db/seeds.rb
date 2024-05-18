@@ -233,7 +233,7 @@ listing = Listing.create!(
   based_in: "Mountain View, CA",
   timezones: "PST, Europe. Elastic hours.",
   stack: "python, go, java",
-  compensation: "200-300k USD vesting stock options 50k, sign-on bonus 50k",
+  compensation: "200-300k USD stock options 50k, sign-on bonus 50k",
   pto: "Unlimited, usually 4 weeks",
   glassdoor_url: "https://www.glassdoor.es/Resumen/Trabajar-en-Google-EI_IE9079.12,18.htm",
   glassdoor_rating: 43,
