@@ -17,4 +17,5 @@ class ListingBlueprint < Blueprinter::Base
     :notes,
     :preference
   )
+  association :applications, blueprint: ApplicationBlueprint
 end
