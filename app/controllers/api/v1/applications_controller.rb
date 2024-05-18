@@ -1,18 +1,4 @@
 class Api::V1::ApplicationsController < Api::V1::BaseController
-  def index
-    result = Applications::Search::Perform.call(query: params[:query], page: params[:page], remote: params[:remote])
-
-    if result.failure?
-      render json: { message: "Couldn't perform search" }, status: :unprocessable_entity
-      return
-    end
-
-    search = result.value!
-    metadata = Applications::Search::Metadata.call(search:)
-
-    render json: { applications: ApplicationBlueprint.render_as_hash(search.results), metadata: }, status: :ok
-  end
-
   def create
     application = Application.new(application_params)
 
