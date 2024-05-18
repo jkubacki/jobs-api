@@ -6,7 +6,7 @@ module ListingsElasticSearch
   included do
     searchkick
 
-    def search_data # rubocop:disable Metrics/MethodLength
+    def search_data # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
       {
         id:,
         company:,
@@ -23,7 +23,9 @@ module ListingsElasticSearch
         glassdoor_url:,
         glassdoor_rating:,
         notes:,
-        preference:
+        preference:,
+        applications_cover_letters: applications.map(&:cover_letter).join(" "),
+        applications_notes: applications.map(&:notes).join(" ")
       }
     end
   end
