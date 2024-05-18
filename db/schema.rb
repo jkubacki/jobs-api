@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
   create_table "applications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "listing_id", null: false
-    t.datetime "applied_at", null: false
+    t.date "applied_at", null: false
     t.boolean "cv", default: false, null: false
     t.text "cover_letter"
     t.text "notes"

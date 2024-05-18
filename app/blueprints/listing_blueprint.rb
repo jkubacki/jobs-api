@@ -1,4 +1,4 @@
-class ListingBlueprint < ApplicationBlueprint
+class ListingBlueprint < Blueprinter::Base
   fields(
     :id,
     :company,
@@ -17,4 +17,5 @@ class ListingBlueprint < ApplicationBlueprint
     :notes,
     :preference
   )
+  association :applications, blueprint: ApplicationBlueprint
 end
