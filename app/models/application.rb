@@ -7,5 +7,5 @@ class Application < ApplicationRecord
 
   default_scope { order(applied_at: :desc, created_at: :desc) }
 
-  validates :preference, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 100 }
+  validates :preference, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
 end

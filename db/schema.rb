@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["listing_id"], name: "index_applications_on_listing_id"
-    t.check_constraint "`preference` between 1 and 100", name: "applications_preference_range"
+    t.check_constraint "`preference` between 0 and 100", name: "applications_preference_range"
   end
 
   create_table "interviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reply_id"], name: "index_interviews_on_reply_id"
-    t.check_constraint "`preference` between 1 and 100", name: "interviews_preference_range"
+    t.check_constraint "`preference` between 0 and 100", name: "interviews_preference_range"
   end
 
   create_table "listings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.check_constraint "`glassdoor_rating` between 1 and 50", name: "listings_glassdoor_rating_range"
-    t.check_constraint "`preference` between 1 and 100", name: "listings_preference_range"
+    t.check_constraint "`preference` between 0 and 100", name: "listings_preference_range"
   end
 
   create_table "offers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reply_id"], name: "index_offers_on_reply_id"
-    t.check_constraint "`preference` between 1 and 100", name: "offers_preference_range"
+    t.check_constraint "`preference` between 0 and 100", name: "offers_preference_range"
   end
 
   create_table "replies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_replies_on_application_id"
-    t.check_constraint "`preference` between 1 and 100", name: "replies_preference_range"
+    t.check_constraint "`preference` between 0 and 100", name: "replies_preference_range"
   end
 
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -94,7 +94,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_164011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reply_id"], name: "index_tasks_on_reply_id"
-    t.check_constraint "`preference` between 1 and 100", name: "tasks_preference_range"
+    t.check_constraint "`preference` between 0 and 100", name: "tasks_preference_range"
   end
 
   add_foreign_key "applications", "listings"

@@ -15,7 +15,7 @@ class CreateTasks < ActiveRecord::Migration[7.1]
         execute <<-SQL.squish
           ALTER TABLE tasks
           ADD CONSTRAINT tasks_preference_range
-          CHECK (preference BETWEEN 1 AND 100)
+          CHECK (preference BETWEEN 0 AND 100)
         SQL
       end
     end
