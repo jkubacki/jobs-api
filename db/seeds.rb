@@ -27,9 +27,9 @@ Listing.create!(
   compensation: "100k base, not paying employees on time",
   pto: "No PTO",
   glassdoor_url: "https://www.glassdoor.com/Overview/Working-at-Theranos-EI_IE1406479.11,19.htm",
-  glassdoor_rating: 1,
+  glassdoor_rating: 10,
   remote: false,
-  preference: 10
+  preference: 1
 )
 
 Listing.create!(
@@ -83,7 +83,7 @@ Listing.create!(
   preference: 70
 )
 
-Listing.create!(
+spacex = Listing.create!(
   company: "SpaceX",
   url: "https://www.spacex.com/careers",
   title: "Senior Software Engineer - Starlink",
@@ -98,6 +98,15 @@ Listing.create!(
   glassdoor_rating: 42,
   remote: false,
   preference: 70
+)
+
+Application.create!(
+  listing: spacex,
+  applied_at: 10.days.ago,
+  cv: true,
+  cover_letter: "I go space. I like space. I want to work in space.",
+  notes: "I dm'd Elon on Twitter. I hope he sees it.",
+  preference: 75
 )
 
 Listing.create!(
