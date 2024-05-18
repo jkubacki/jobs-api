@@ -196,42 +196,6 @@ Listing.create!(
   preference: 60
 )
 
-github = Listing.create!(
-  company: "GitHub",
-  url: "https://github.com/careers",
-  title: "Senior Engineering Manager",
-  description: "Lead a team of engineers to build the future of software development.",
-  product: "Software Development",
-  based_in: "San Francisco, CA",
-  timezones: "PST. American hours.",
-  stack: "ruby, react, graphql",
-  compensation: "200k base, yearly bonus 20k, stock options 50k",
-  pto: "4 weeks",
-  glassdoor_url: "https://www.glassdoor.com/Overview/Working-at-GitHub-EI_IE644786.11,17.htm",
-  glassdoor_rating: 42,
-  remote: true,
-  preference: 90,
-  notes: "I love GitHub. I use it every day."
-)
-
-Application.create!(
-  listing: github,
-  applied_at: 1.day.ago,
-  cv: true,
-  cover_letter: "",
-  notes: "I've sent application for the Authentication team. I'd prefer Solutions",
-  preference: 50
-)
-
-Application.create!(
-  listing: github,
-  applied_at: 1.day.ago,
-  cv: true,
-  cover_letter: "I'm a great fit for this role. I'm excited to bring new features to GitHub.",
-  notes: "Solutions team. This looks very good.",
-  preference: 90
-)
-
 # Google listing application seed data. True story.
 listing = Listing.create!(
   company: "Google",
@@ -378,3 +342,39 @@ Reply.create!(
 )
 
 final_offer.update!(accepted: true)
+
+github = Listing.create!(
+  company: "GitHub",
+  url: "https://github.com/careers",
+  title: "Senior Engineering Manager",
+  description: "Lead a team of engineers to build the future of software development.",
+  product: "Software Development",
+  based_in: "San Francisco, CA",
+  timezones: "PST. American hours.",
+  stack: "ruby, react, graphql",
+  compensation: "200k base, yearly bonus 20k, stock options 50k",
+  pto: "4 weeks",
+  glassdoor_url: "https://www.glassdoor.com/Overview/Working-at-GitHub-EI_IE644786.11,17.htm",
+  glassdoor_rating: 42,
+  remote: true,
+  preference: 90,
+  notes: "I love GitHub. I use it every day."
+)
+
+Application.create!(
+  listing: github,
+  applied_at: 1.day.ago,
+  cv: true,
+  cover_letter: "",
+  notes: "I've sent application for the Authentication team. I'd prefer Solutions",
+  preference: 50
+)
+
+Application.create!(
+  listing: github,
+  applied_at: 1.day.ago,
+  cv: true,
+  cover_letter: "I'm a great fit for this role. I'm excited to bring new features to GitHub.",
+  notes: "Solutions team. This looks very good.",
+  preference: 90
+)
