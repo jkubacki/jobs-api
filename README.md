@@ -1,5 +1,10 @@
-# README
+## Jobs app
 
-Jobs - a simple app to track job listings, applications, interviews and offers
+https://github.com/jkubacki/jobs-app
 
-Ruby on Rails API, Next.js frontend
+
+## Backend
+
+`ruby on rails, elasticsearch`
+
+![output](https://github.com/jkubacki/jobs/assets/1104186/67827e74-db84-472d-aef1-efa86d02052d)
