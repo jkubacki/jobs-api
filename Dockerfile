@@ -5,7 +5,7 @@ ARG RUBY_VERSION=3.2.3
 FROM --platform=linux/amd64 registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
-WORKDIR /rails
+WORKDIR /app
 
 # Set production environment
 ENV RAILS_ENV="production" \
