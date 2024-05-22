@@ -1,7 +1,7 @@
 module Seeds
   class ResetWhenNoRecentActivity < ApplicationService
-    def call
-      if inactive?
+    def call(since: 10.minutes.ago)
+      if inactive?(since:)
         Seeds::Reset.call
         Success(true)
       else
@@ -11,9 +11,9 @@ module Seeds
 
     private
 
-    def inactive?
-      Listing.where(updated_at: 10.minutes.ago..Time.current).empty? &&
-        Application.where(updated_at: 10.minutes.ago..Time.current).empty?
+    def inactive?(since:)
+      Listing.where(updated_at: since..Time.current).empty? &&
+        Application.where(updated_at: since..Time.current).empty?
     end
   end
 end
