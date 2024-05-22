@@ -170,6 +170,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
+    obscenity (1.0.2)
     oj (3.16.3)
       bigdecimal (>= 3.0)
     parallel (1.24.0)
@@ -314,6 +315,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   mysql2 (~> 0.5)
+  obscenity
   oj
   pry
   puma (>= 5.0)

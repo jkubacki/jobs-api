@@ -1,4 +1,6 @@
 class Api::V1::ApplicationsController < Api::V1::BaseController
+  before_action :filter_obscenity, only: %i[create update]
+
   def create
     application = Application.new(application_params)
 
