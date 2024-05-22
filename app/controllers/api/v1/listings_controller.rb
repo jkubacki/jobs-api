@@ -1,4 +1,6 @@
 class Api::V1::ListingsController < Api::V1::BaseController
+  before_action :filter_obscenity, only: %i[create update]
+
   def index
     result = Listings::Search::Perform.call(query: params[:query], page: params[:page], remote: params[:remote])
 
@@ -14,11 +16,6 @@ class Api::V1::ListingsController < Api::V1::BaseController
   end
 
   def create
-    if ParamsIncludeObscenity.call(params: listing_params)
-      render json: { message: "Plase, don't use obscenity." }, status: :unprocessable_entity
-      return
-    end
-
     listing = Listing.new(listing_params)
 
     if listing.save
@@ -29,10 +26,6 @@ class Api::V1::ListingsController < Api::V1::BaseController
   end
 
   def update
-    if ParamsIncludeObscenity.call(params: listing_params)
-      render json: { message: "Plase, don't use obscenity." }, status: :unprocessable_entity
-      return
-    end
     listing = Listing.find(params[:id])
 
     if listing.update(listing_params)

@@ -1,9 +1,7 @@
 class Api::V1::ApplicationsController < Api::V1::BaseController
+  before_action :filter_obscenity, only: %i[create update]
+
   def create
-    if ParamsIncludeObscenity.call(params: application_params)
-      render json: { message: "Plase, don't use obscenity." }, status: :unprocessable_entity
-      return
-    end
     application = Application.new(application_params)
 
     if application.save
@@ -14,10 +12,6 @@ class Api::V1::ApplicationsController < Api::V1::BaseController
   end
 
   def update
-    if ParamsIncludeObscenity.call(params: application_params)
-      render json: { message: "Plase, don't use obscenity." }, status: :unprocessable_entity
-      return
-    end
     application = Application.find(params[:id])
 
     if application.update(application_params)
