@@ -42,4 +42,91 @@ RSpec.describe Api::V1::ListingsController do
       end
     end
   end
+
+  describe "POST create" do
+    before { allow(ParamsIncludeObscenity).to receive(:call).and_return(params_include_obscenity) }
+
+    let(:params_include_obscenity) { false }
+
+    let(:params) do
+      {
+        listing: {
+          company: Faker::Company.name,
+          url: Faker::Internet.url,
+          title: Faker::Job.title,
+          description: Faker::Company.bs,
+          product: Faker::Company.industry,
+          based_in: Faker::Address.full_address,
+          timezones: Faker::Address.time_zone,
+          stack: Faker::ProgrammingLanguage.name,
+          compensation: "$250k-$300k",
+          pto: "14 days",
+          remote: true,
+          glassdoor_url: Faker::Internet.url,
+          glassdoor_rating: 45,
+          notes: "These are my notes",
+          preference:
+        }
+      }
+    end
+
+    let(:preference) { 50 }
+
+    context "with valid params" do
+      it "returns created" do
+        post(:create, params:)
+        expect(response).to have_http_status(:created)
+      end
+
+      it "creates a listing" do
+        expect { post(:create, params:) }.to change(Listing, :count).by(1)
+      end
+
+      it "renders created listing" do
+        post(:create, params:)
+
+        expect(response.body).to eq(
+          ListingBlueprint.render(Listing.last)
+        )
+      end
+    end
+
+    context "with valid params including obscenity" do
+      let(:params_include_obscenity) { true }
+
+      it "returns unprocessable_entity" do
+        post(:create, params:)
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "doesn't create a listing" do
+        expect { post(:create, params:) }.not_to change(Listing, :count)
+      end
+
+      it "renders errors" do
+        post(:create, params:)
+
+        expect(response.body).to eq({ message: "Plase, don't use obscenity." }.to_json)
+      end
+    end
+
+    context "with invalid params" do
+      let(:preference) { 101 }
+
+      it "returns unprocessable_entity" do
+        post(:create, params:)
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "doesn't create a listing" do
+        expect { post(:create, params:) }.not_to change(Listing, :count)
+      end
+
+      it "renders errors" do
+        post(:create, params:)
+
+        expect(response.body).to eq({ message: "Preference must be less than or equal to 100" }.to_json)
+      end
+    end
+  end
 end
