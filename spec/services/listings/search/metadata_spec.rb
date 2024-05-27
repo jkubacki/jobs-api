@@ -7,7 +7,7 @@ RSpec.describe Listings::Search::Metadata do
     double( # rubocop:disable RSpec/VerifiedDoubles
       total_count:,
       current_page: 1,
-      offset_value: 10,
+      offset_value: 1,
       limit_value: 10
     )
   end
@@ -16,7 +16,7 @@ RSpec.describe Listings::Search::Metadata do
     let(:total_count) { 100 }
 
     it "returns metadata with offset + limit as to" do
-      expect(subject).to eq({ total: total_count, page: 1, from: 10, to: 20 })
+      expect(subject).to eq({ total: total_count, page: 1, from: 1, to: 11 })
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe Listings::Search::Metadata do
     let(:total_count) { 5 }
 
     it "returns metadata with total_count as to" do
-      expect(subject).to eq({ total: total_count, page: 1, from: 10, to: 5 })
+      expect(subject).to eq({ total: total_count, page: 1, from: 1, to: 5 })
     end
   end
 end
