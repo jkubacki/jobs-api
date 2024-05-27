@@ -129,4 +129,89 @@ RSpec.describe Api::V1::ListingsController do
       end
     end
   end
+
+  describe "PUTS update" do
+    before { allow(ParamsIncludeObscenity).to receive(:call).and_return(params_include_obscenity) }
+
+    let(:params_include_obscenity) { false }
+    let(:params) do
+      {
+        id:,
+        listing: {
+          company: "Updated Company Name",
+          preference:
+        }
+      }
+    end
+    let(:preference) { 50 }
+
+    context "when listing is found" do
+      let(:id) { 0 }
+
+      it "returns not found" do
+        put(:update, params:)
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context "when listing exists" do
+      let!(:listing) { create(:listing) }
+      let(:id) { listing.id }
+
+      context "with valid params" do # rubocop:disable RSpec/NestedGroups
+        it "returns ok" do
+          put(:update, params:)
+          expect(response).to have_http_status(:ok)
+        end
+
+        it "updates a listing" do
+          put(:update, params:)
+
+          expect(listing.reload.company).to eq "Updated Company Name"
+        end
+      end
+
+      context "with valid params including obscenity" do # rubocop:disable RSpec/NestedGroups
+        let(:params_include_obscenity) { true }
+
+        it "returns unprocessable_entity" do
+          put(:update, params:)
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+
+        it "doesn't update a listing" do
+          put(:update, params:)
+
+          expect(listing.reload.company).not_to eq "Updated Company Name"
+        end
+
+        it "renders errors" do
+          put(:update, params:)
+
+          expect(response.body).to eq({ message: "Plase, don't use obscenity." }.to_json)
+        end
+      end
+
+      context "with invalid params" do # rubocop:disable RSpec/NestedGroups
+        let(:preference) { 101 }
+
+        it "returns unprocessable_entity" do
+          put(:update, params:)
+          expect(response).to have_http_status(:unprocessable_entity)
+        end
+
+        it "doesn't update a listing" do
+          put(:update, params:)
+
+          expect(listing.reload.preference).not_to eq 101
+        end
+
+        it "renders errors" do
+          put(:update, params:)
+
+          expect(response.body).to eq({ message: "Preference must be less than or equal to 100" }.to_json)
+        end
+      end
+    end
+  end
 end
