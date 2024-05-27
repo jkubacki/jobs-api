@@ -10,6 +10,7 @@ RSpec.describe Seeds::Seed do
       .and(change(Reply, :count).by(11))
       .and(change(Interview, :count).by(1))
       .and(change(Offer, :count).by(2))
+      .and(change(Task, :count).by(1))
     )
   end
 end
