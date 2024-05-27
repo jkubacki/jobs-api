@@ -1,6 +1,6 @@
 require "rails_helper"
 # rubocop:disable RSpec/MultipleMemoizedHelpers
-RSpec.describe Listings::Search::Perform, type: :service do
+RSpec.describe Listings::Search::Perform do
   subject { described_class.call(query:, page:, remote:, per_page:) }
 
   let(:query) { "" }
