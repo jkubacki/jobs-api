@@ -145,7 +145,7 @@ RSpec.describe Api::V1::ListingsController do
     end
     let(:preference) { 50 }
 
-    context "when listing is found" do
+    context "when listing is not found" do
       let(:id) { 0 }
 
       it "returns not found" do
