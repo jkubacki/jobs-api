@@ -214,4 +214,27 @@ RSpec.describe Api::V1::ListingsController do
       end
     end
   end
+
+  describe "DELETE destroy" do
+    context "when listing is notfound" do
+      it "returns not found" do
+        delete(:destroy, params: { id: 0 })
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context "when listing exists" do
+      let!(:listing) { create(:listing) }
+      let(:id) { listing.id }
+
+      it "returns ok" do
+        delete(:destroy, params: { id: })
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "deletes a listing" do
+        expect { delete(:destroy, params: { id: }) }.to change(Listing, :count).by(-1)
+      end
+    end
+  end
 end
