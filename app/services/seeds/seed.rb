@@ -166,23 +166,6 @@ module Seeds
       )
 
       Listing.create!(
-        company: "Tesla",
-        url: "https://www.tesla.com/careers",
-        title: "Senior Software Engineer - Autopilot",
-        description: "Develop the future of self-driving cars.",
-        product: "Electric Cars",
-        based_in: "Palo Alto, CA",
-        timezones: "PST. American hours.",
-        stack: "python, react, graphql",
-        compensation: "200k base, yearly bonus 20k, stock options 50k",
-        pto: "4 weeks",
-        glassdoor_url: "https://www.glassdoor.com/Overview/Working-at-Tesla-EI_IE43129.11,16.htm",
-        glassdoor_rating: 42,
-        remote: false,
-        preference: 70
-      )
-
-      Listing.create!(
         company: "Netflix",
         url: "https://jobs.netflix.com/",
         title: "Principal Software Developer",
@@ -380,6 +363,50 @@ module Seeds
         cover_letter: "I'm a great fit for this role. I'm excited to bring new features to GitHub.",
         notes: "Solutions team. This looks very good.",
         preference: 90
+      )
+
+      tesla = Listing.create!(
+        company: "Tesla",
+        url: "https://www.tesla.com/careers",
+        title: "Senior Software Engineer - Autopilot",
+        description: "Develop the future of self-driving cars.",
+        product: "Electric Cars",
+        based_in: "Palo Alto, CA",
+        timezones: "PST. American hours.",
+        stack: "python, react, graphql",
+        compensation: "200k base, yearly bonus 20k, stock options 50k",
+        pto: "4 weeks",
+        glassdoor_url: "https://www.glassdoor.com/Overview/Working-at-Tesla-EI_IE43129.11,16.htm",
+        glassdoor_rating: 42,
+        remote: false,
+        preference: 70
+      )
+
+      application = Application.create!(
+        listing: tesla,
+        applied_at: 1.day.ago,
+        cv: true,
+        cover_letter: "I've never worked on self-driving cars, but I'm excited to learn.",
+        notes: "A long shot. But I'd love to work on self-driving cars.",
+        preference: 40
+      )
+
+      Reply.create!(
+        application:,
+        sent_at: 1.hour.ago,
+        body: "Thank you for your application. However, we are looking for someone with experience in self-driving cars. Maybe try SpaceX?", # rubocop:disable Layout/LineLength
+        notes: "I guess I'll try SpaceX.",
+        rejected: true,
+        preference: 10
+      )
+
+      Reply.create!(
+        application:,
+        sent_at: 30.minutes.ago,
+        by_me: true,
+        body: "Thank you for your reply. I'll apply to SpaceX.",
+        rejected: true,
+        preference: 100
       )
     end
   end
