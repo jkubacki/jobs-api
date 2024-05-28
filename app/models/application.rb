@@ -5,6 +5,9 @@ class Application < ApplicationRecord
   has_many :tasks, through: :replies
   has_many :offers, through: :replies
 
+  after_save { listing.reindex }
+  after_destroy { application.listing.reindex }
+
   default_scope { order(applied_at: :desc, created_at: :desc) }
 
   validates :applied_at, presence: true
