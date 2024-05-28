@@ -6,5 +6,9 @@ FactoryBot.define do
     cover_letter { Faker::Lorem.paragraph }
     notes { Faker::Lorem.paragraph }
     preference { Faker::Number.within(range: 1..100) }
+
+    trait :rejected do
+      replies { [build(:reply, rejected: true)] }
+    end
   end
 end

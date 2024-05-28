@@ -15,5 +15,9 @@ FactoryBot.define do
     glassdoor_rating { Faker::Number.within(range: 1..50) }
     notes { Faker::Lorem.paragraph }
     preference { Faker::Number.within(range: 1..100) }
+
+    trait :rejected do
+      applications { [build(:application, :rejected)] }
+    end
   end
 end

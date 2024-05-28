@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :listings, only: [:index, :create, :destroy, :update]
       resources :applications, only: [:create, :destroy, :update]
+      resources :replies, only: [:create, :destroy]
     end
   end
 end
