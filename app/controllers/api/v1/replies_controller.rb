@@ -28,7 +28,7 @@ class Api::V1::RepliesController < Api::V1::BaseController
       :application_id,
       :sent_at,
       :by_me,
-      :rejection,
+      :rejected,
       :body,
       :notes,
       :preference
