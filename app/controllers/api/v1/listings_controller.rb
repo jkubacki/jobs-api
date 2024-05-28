@@ -1,8 +1,13 @@
 class Api::V1::ListingsController < Api::V1::BaseController
   before_action :filter_obscenity, only: %i[create update]
 
-  def index
-    result = Listings::Search::Perform.call(query: params[:query], page: params[:page], remote: params[:remote])
+  def index # rubocop:disable Metrics/MethodLength
+    result = Listings::Search::Perform.call(
+      query: params[:query],
+      page: params[:page],
+      remote: params[:remote],
+      rejected: params[:rejected]
+    )
 
     if result.failure?
       render json: { message: "Couldn't perform search" }, status: :unprocessable_entity

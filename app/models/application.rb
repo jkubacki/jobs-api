@@ -6,7 +6,7 @@ class Application < ApplicationRecord
   has_many :offers, through: :replies
 
   after_save { listing.reindex }
-  after_destroy { application.listing.reindex }
+  after_destroy { listing.reindex }
 
   default_scope { order(applied_at: :desc, created_at: :desc) }
 
