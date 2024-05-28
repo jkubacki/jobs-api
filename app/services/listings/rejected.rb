@@ -1,7 +1,9 @@
 module Listings
   class Rejected < ApplicationService
     def call(listing:)
-      listing.applications.all? { |application| Applications::Rejected.call(application:) }
+      listing.applications.size.positive? && listing.applications.all? do |application|
+        Applications::Rejected.call(application:)
+      end
     end
   end
 end
