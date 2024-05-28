@@ -25,7 +25,8 @@ module ListingsElasticSearch
         notes:,
         preference:,
         applications_cover_letters: applications.map(&:cover_letter).join(" "),
-        applications_notes: applications.map(&:notes).join(" ")
+        applications_notes: applications.map(&:notes).join(" "),
+        rejected: Listings::Rejected.call(listing: self)
       }
     end
   end
