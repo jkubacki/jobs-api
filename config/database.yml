@@ -28,7 +28,8 @@ development:
 test:
   <<: *default
   database: jobs_test
-  port: 3310
+  host: <%= ENV.fetch("MYSQL_HOST") { "127.0.0.1" } %>
+  port:  <%= ENV.fetch("MYSQL_PORT") { "3310" } %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
