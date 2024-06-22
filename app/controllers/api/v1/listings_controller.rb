@@ -22,6 +22,7 @@ class Api::V1::ListingsController < Api::V1::BaseController
 
   def create
     listing = Listing.new(listing_params)
+    listing = Listings::AddDefaults.call(listing:)
 
     if listing.save
       render json: ListingBlueprint.render(listing), status: :created
