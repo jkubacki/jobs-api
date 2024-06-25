@@ -20,7 +20,8 @@ module ListingsElasticSearch
         pto:,
         remote:,
         rejected: Listings::Rejected.call(listing: self),
-        status: Listings::Status.call(listing: self)
+        status: Listings::Status.call(listing: self),
+        updated_at: Listings::UpdatedAt.call(listing: self)
       }
     end
   end

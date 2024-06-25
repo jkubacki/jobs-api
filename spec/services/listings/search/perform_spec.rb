@@ -29,14 +29,25 @@ RSpec.describe Listings::Search::Perform do
   context "when all parameters are empty" do
     let(:per_page) { 2 }
 
-    it "returns first page of newest listings" do
+    it "returns first page of last updated listings" do
       expect(subject.value!.results).to eq [rejected_onsite_ruby_stack_listing, onsite_ruby_stack_listing]
+    end
+
+    context "when listing created first is updated last" do
+      before do
+        onsite_ruby_stack_listing.update(title: "Ruby on Rails Developer")
+        Listing.reindex
+      end
+
+      it "returns first page of last updated listings" do
+        expect(subject.value!.results).to eq [onsite_ruby_stack_listing, rejected_onsite_ruby_stack_listing]
+      end
     end
 
     context "with status param" do
       let(:status) { "rejected" }
 
-      it "returns first page of all newest listings with status" do
+      it "returns first page of all last updated listings with status" do
         expect(subject.value!.results).to eq [rejected_onsite_ruby_stack_listing, rejected_remote_listing]
       end
     end
@@ -46,14 +57,14 @@ RSpec.describe Listings::Search::Perform do
     let(:page) { 2 }
     let(:per_page) { 2 }
 
-    it "returns the second page of newest listings" do
+    it "returns the second page of last updated listings" do
       expect(subject.value!.results).to eq [rejected_remote_listing, remote_listing]
     end
 
     context "with status param" do
       let(:status) { "rejected" }
 
-      it "returns the second page of all newest listings with status" do
+      it "returns the second page of all last updated listings with status" do
         expect(subject.value!.results).to eq [rejected_onsite_ruby_title_listing]
       end
     end

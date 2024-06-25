@@ -1,14 +1,20 @@
 module Listings
   module Search
     class Perform < ApplicationService
-      def call(query:, page:, remote:, status:, per_page: 10)
+      def call(query:, page:, remote:, status:, per_page: 10) # rubocop:disable Metrics/MethodLength
         query = query.presence || "*"
         page ||= 1
         where = {}
         where = where.merge(remote_filter(remote))
         where = where.merge(status_filter(status))
 
-        search = Listing.search(query, page:, per_page:, where:, order: { id: :desc }).includes(applications: :replies)
+        search = Listing.search(
+          query,
+          page:,
+          per_page:,
+          where:,
+          order: { updated_at: :desc }
+        ).includes(applications: :replies)
         search.total_count # Eager load to handle errors. #execute prints a warning.
         Success(search)
       rescue Elastic::Transport::Transport::Error => e
