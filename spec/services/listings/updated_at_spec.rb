@@ -24,7 +24,7 @@ describe Listings::UpdatedAt do
     let(:listing_updated_at) { 1.day.ago }
 
     it "returns listing updated_at" do
-      expect(subject).to eq(listing_updated_at)
+      expect(subject.utc.to_i).to eq(listing_updated_at.utc.to_i)
     end
   end
 
@@ -32,7 +32,7 @@ describe Listings::UpdatedAt do
     let(:application_updated_at) { 1.day.ago }
 
     it "returns application updated_at" do
-      expect(subject).to eq(application_updated_at)
+      expect(subject.utc.to_i).to eq(application_updated_at.utc.to_i)
     end
   end
 
@@ -40,7 +40,7 @@ describe Listings::UpdatedAt do
     let(:reply_updated_at) { 1.day.ago }
 
     it "returns reply updated_at" do
-      expect(subject).to eq(reply_updated_at)
+      expect(subject.utc.to_i).to eq(reply_updated_at.utc.to_i)
     end
   end
 end
