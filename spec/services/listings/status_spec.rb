@@ -3,7 +3,11 @@ require "rails_helper"
 describe Listings::Status do
   subject { described_class.call(listing:) }
 
-  let(:listing) { create(:listing) }
+  let!(:listing) { create(:listing) }
+
+  before do
+    allow(listing).to receive(:reindex)
+  end
 
   context "when listing has no applications" do
     it "returns pending" do
