@@ -3,7 +3,7 @@ module Listings
     PENDING = "pending".freeze
     APPLIED = "applied".freeze
     REJECTED = "rejected".freeze
-    IN_PROGRESS = "in_progress".freeze
+    ACTIVE = "active".freeze
 
     def call(listing:)
       applications = listing.applications
@@ -12,7 +12,7 @@ module Listings
       return APPLIED if applications.all? { |application| application.replies.empty? }
       return REJECTED if applications.any? { |application| application.replies.any?(&:rejected?) }
 
-      IN_PROGRESS
+      ACTIVE
     end
   end
 end

@@ -1,12 +1,12 @@
 module Listings
   module Search
     class Perform < ApplicationService
-      def call(query:, page:, remote:, rejected:, per_page: 10)
+      def call(query:, page:, remote:, status:, per_page: 10)
         query = query.presence || "*"
         page ||= 1
         where = {}
         where = where.merge(remote_filter(remote))
-        where = where.merge(rejected_filter(rejected))
+        where = where.merge(status_filter(status))
 
         search = Listing.search(query, page:, per_page:, where:, order: { id: :desc }).includes(applications: :replies)
         search.total_count # Eager load to handle errors. #execute prints a warning.
@@ -23,10 +23,10 @@ module Listings
         { remote: remote == "true" }
       end
 
-      def rejected_filter(rejected)
-        return { rejected: false } if rejected.blank?
+      def status_filter(status)
+        return {} if status.blank?
 
-        {}
+        { status: }
       end
     end
   end

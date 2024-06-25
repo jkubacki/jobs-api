@@ -45,7 +45,7 @@ describe Listings::Status do
       end
 
       it "returns in progress" do
-        expect(subject).to eq(described_class::IN_PROGRESS)
+        expect(subject).to eq(described_class::ACTIVE)
       end
     end
   end

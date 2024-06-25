@@ -6,7 +6,7 @@ class Api::V1::ListingsController < Api::V1::BaseController
       query: params[:query],
       page: params[:page],
       remote: params[:remote],
-      rejected: params[:rejected]
+      status: params[:status]
     )
 
     if result.failure?
