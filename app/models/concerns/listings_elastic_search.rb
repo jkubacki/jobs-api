@@ -6,6 +6,8 @@ module ListingsElasticSearch
   included do
     searchkick
 
+    scope :search_import, -> { includes(applications: [:replies]) }
+
     def search_data # rubocop:disable Metrics/MethodLength
       {
         id:,
@@ -17,7 +19,8 @@ module ListingsElasticSearch
         stack:,
         pto:,
         remote:,
-        rejected: Listings::Rejected.call(listing: self)
+        rejected: Listings::Rejected.call(listing: self),
+        status: Listings::Status.call(listing: self)
       }
     end
   end

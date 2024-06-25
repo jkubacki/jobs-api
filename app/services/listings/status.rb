@@ -6,7 +6,7 @@ module Listings
     IN_PROGRESS = "in_progress".freeze
 
     def call(listing:)
-      applications = listing.applications.includes(:replies)
+      applications = listing.applications
 
       return PENDING if applications.empty?
       return APPLIED if applications.all? { |application| application.replies.empty? }
